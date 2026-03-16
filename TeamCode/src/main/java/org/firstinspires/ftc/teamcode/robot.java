@@ -13,12 +13,12 @@ public class robot {
     IMU imu;
 
     public robot(HardwareMap hardware) {
-        left_Front = hardware.get(DcMotor.class, "front_left_drive");
-        right_Front = hardware.get(DcMotor.class, "front_right_drive");
-        left_Back = hardware.get(DcMotor.class, "back_left_drive");
-        right_Back = hardware.get(DcMotor.class, "back_right_drive");
-        left_Back.setDirection(DcMotor.Direction.REVERSE);
-        left_Front.setDirection(DcMotor.Direction.REVERSE);
+        left_Front = hardware.get(DcMotor.class, "leftFront");
+        right_Front = hardware.get(DcMotor.class, "rightFront");
+        left_Back = hardware.get(DcMotor.class, "leftBack");
+        right_Back = hardware.get(DcMotor.class, "rightBack");
+        right_Back.setDirection(DcMotor.Direction.REVERSE);
+        right_Front.setDirection(DcMotor.Direction.REVERSE);
 
         imu = hardware.get(IMU.class, "imu");
     }

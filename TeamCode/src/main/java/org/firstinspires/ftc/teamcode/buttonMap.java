@@ -5,76 +5,82 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 public class buttonMap {
     public boolean Zero = true;
+
+    public double rightFrontMotorPower = 0;
+    public double rightBackMotorPower = 0;
+    public double leftFrontMotorPower = 0;
+    public double leftBackMotorPower = 0;
+
     public void loop(robot Robot, OpMode opMode) {
         if (opMode.gamepad1.right_bumper) {
-            Robot.left_Front.setPower(0.6);
-            Robot.left_Back.setPower(0.6);
-            Robot.right_Front.setPower(0.6);
-            Robot.right_Back.setPower(0.6);
+            leftFrontMotorPower = 0.8;
+            leftBackMotorPower = 0.8;
+            rightBackMotorPower = 0.8;
+            rightFrontMotorPower = 0.8;
         }
         if (opMode.gamepad1.left_bumper) {
-            Robot.left_Front.setPower(-0.6);
-            Robot.left_Back.setPower(-0.6);
-            Robot.right_Front.setPower(-0.6);
-            Robot.right_Back.setPower(-0.6);
+            leftFrontMotorPower = -0.8;
+            leftBackMotorPower = -0.8;
+            rightBackMotorPower = -0.8;
+            rightFrontMotorPower = -0.8;
         }
         if (opMode.gamepad1.dpad_left) {
             if (opMode.gamepad1.dpad_up) {
-                Robot.left_Front.setPower(0);
-                Robot.left_Back.setPower(0.6);
-                Robot.right_Front.setPower(0.6);
-                Robot.right_Back.setPower(0);
+                leftFrontMotorPower = 0;
+                leftBackMotorPower = 0.8;
+                rightBackMotorPower = 0;
+                rightFrontMotorPower = 0.8;
             }
             else if (opMode.gamepad1.dpad_down){
-                Robot.left_Front.setPower(0);
-                Robot.left_Back.setPower(-0.6);
-                Robot.right_Front.setPower(-0.6);
-                Robot.right_Back.setPower(0);
+                leftFrontMotorPower = -0.8;
+                leftBackMotorPower = 0;
+                rightBackMotorPower = -0.8;
+                rightFrontMotorPower = 0;
             }
             else {
-                Robot.left_Front.setPower(-0.6);
-                Robot.left_Back.setPower(0.6);
-                Robot.right_Front.setPower(0.6);
-                Robot.right_Back.setPower(-0.6);
+                leftFrontMotorPower = -0.8;
+                leftBackMotorPower = 0.8;
+                rightBackMotorPower = -0.8;
+                rightFrontMotorPower = 0.8;
             }
 
         }
         if (opMode.gamepad1.dpad_right) {
             if (opMode.gamepad1.dpad_up) {
-                Robot.left_Front.setPower(0.6);
-                Robot.left_Back.setPower(0);
-                Robot.right_Front.setPower(0);
-                Robot.right_Back.setPower(0.6);
+                leftFrontMotorPower = 0.8;
+                leftBackMotorPower = 0;
+                rightBackMotorPower = 0.8;
+                rightFrontMotorPower = 0;
+            } else if (opMode.gamepad1.dpad_down) {
+                leftFrontMotorPower = 0;
+                leftBackMotorPower = -0.8;
+                rightBackMotorPower = 0;
+                rightFrontMotorPower = -0.8;
+            } else {
+                leftFrontMotorPower = 0.8;
+                leftBackMotorPower = -0.8;
+                rightBackMotorPower = 0.8;
+                rightFrontMotorPower = -0.8;
             }
-            else if (opMode.gamepad1.dpad_down){
-                Robot.left_Front.setPower(-0.6);
-                Robot.left_Back.setPower(0);
-                Robot.right_Front.setPower(0);
-                Robot.right_Back.setPower(-0.6);
-            }
-            else {
-                Robot.left_Front.setPower(0.6);
-                Robot.left_Back.setPower(-0.6);
-                Robot.right_Front.setPower(-0.6);
-                Robot.right_Back.setPower(0.6);
-            }
+        }
+
         if (opMode.gamepad1.right_trigger_pressed) {
-            Robot.left_Front.setPower(opMode.gamepad1.right_trigger);
-            Robot.left_Back.setPower(opMode.gamepad1.right_trigger);
-            Robot.right_Front.setPower(-opMode.gamepad1.right_trigger);
-            Robot.right_Back.setPower(-opMode.gamepad1.right_trigger);
+            leftFrontMotorPower = -opMode.gamepad1.right_trigger;
+            leftBackMotorPower = -opMode.gamepad1.right_trigger;
+            rightBackMotorPower = opMode.gamepad1.right_trigger;
+            rightFrontMotorPower = opMode.gamepad1.right_trigger;
         }
         if (opMode.gamepad1.left_trigger_pressed) {
-            Robot.left_Front.setPower(opMode.gamepad1.left_trigger);
-            Robot.left_Back.setPower(opMode.gamepad1.left_trigger);
-            Robot.right_Front.setPower(-opMode.gamepad1.left_trigger);
-            Robot.right_Back.setPower(-opMode.gamepad1.left_trigger);
+            leftFrontMotorPower = opMode.gamepad1.left_trigger;
+            leftBackMotorPower = opMode.gamepad1.left_trigger;
+            rightBackMotorPower = -opMode.gamepad1.left_trigger;
+            rightFrontMotorPower = -opMode.gamepad1.left_trigger;
         }
         if (opMode.gamepad1.a) {
-            Robot.left_Front.setPower(Robot.left_Front.getPower() * 0.6);
-            Robot.left_Back.setPower(Robot.left_Back.getPower() * 0.6);
-            Robot.right_Front.setPower(Robot.right_Front.getPower() * 0.6);
-            Robot.right_Back.setPower(Robot.right_Back.getPower() * 0.6);
+            leftFrontMotorPower *= 0.8;
+            leftBackMotorPower *= 0.8;
+            rightBackMotorPower *= 0.8;
+            rightFrontMotorPower *= 0.8;
         }
         if (opMode.gamepad1.b) {
 
@@ -95,6 +101,16 @@ public class buttonMap {
             }
 
         }
+
+        Robot.left_Front.setPower(leftFrontMotorPower);
+        Robot.left_Back.setPower(leftBackMotorPower);
+        Robot.right_Front.setPower(rightFrontMotorPower);
+        Robot.right_Back.setPower(rightBackMotorPower);
+        leftFrontMotorPower = 0;
+        leftBackMotorPower = 0;
+        rightFrontMotorPower = 0;
+        rightBackMotorPower = 0;
+
         }
     }
-}
+

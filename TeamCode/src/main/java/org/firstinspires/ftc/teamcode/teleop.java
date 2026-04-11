@@ -13,12 +13,12 @@ public class teleop extends OpMode {
     public void init() {
         Robot = new robot(hardwareMap);
         map = new buttonMap();
-        shoot = new shootButtonMap();
+//        shoot = new shootButtonMap();
     }
 
     @Override
     public void loop() {
         map.loop(Robot, this);
-        shoot.loop(Robot, this);
+//        shoot.loop(Robot, this);
     }
 }

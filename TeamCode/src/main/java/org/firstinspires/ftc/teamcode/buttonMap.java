@@ -11,56 +11,72 @@ public class buttonMap {
     public double leftFrontMotorPower = 0;
     public double leftBackMotorPower = 0;
 
+    public double s = 0.6; // speed
+
     public void loop(robot Robot, OpMode opMode) {
-        if (opMode.gamepad1.right_bumper) {
-            leftFrontMotorPower = 0.8;
-            leftBackMotorPower = 0.8;
-            rightBackMotorPower = 0.8;
-            rightFrontMotorPower = 0.8;
-        }
-        if (opMode.gamepad1.left_bumper) {
-            leftFrontMotorPower = -0.8;
-            leftBackMotorPower = -0.8;
-            rightBackMotorPower = -0.8;
-            rightFrontMotorPower = -0.8;
-        }
+//        if (opMode.gamepad1.right_bumper) {
+//            leftFrontMotorPower = s;
+//            leftBackMotorPower = s;
+//            rightBackMotorPower = s;
+//            rightFrontMotorPower = s;
+//        }
+//        if (opMode.gamepad1.left_bumper) {
+//            leftFrontMotorPower = -s;
+//            leftBackMotorPower = -s;
+//            rightBackMotorPower = -s;
+//            rightFrontMotorPower = -s;
+//        }
         if (opMode.gamepad1.dpad_left) {
             if (opMode.gamepad1.dpad_up) {
                 leftFrontMotorPower = 0;
-                leftBackMotorPower = 0.8;
+                leftBackMotorPower = s;
                 rightBackMotorPower = 0;
-                rightFrontMotorPower = 0.8;
+                rightFrontMotorPower = s;
             }
             else if (opMode.gamepad1.dpad_down){
-                leftFrontMotorPower = -0.8;
+                leftFrontMotorPower = -s;
                 leftBackMotorPower = 0;
-                rightBackMotorPower = -0.8;
+                rightBackMotorPower = -s;
                 rightFrontMotorPower = 0;
             }
             else {
-                leftFrontMotorPower = -0.8;
-                leftBackMotorPower = 0.8;
-                rightBackMotorPower = -0.8;
-                rightFrontMotorPower = 0.8;
+                leftFrontMotorPower = -s;
+                leftBackMotorPower = s;
+                rightBackMotorPower = -s;
+                rightFrontMotorPower = s;
             }
 
         }
         if (opMode.gamepad1.dpad_right) {
             if (opMode.gamepad1.dpad_up) {
-                leftFrontMotorPower = 0.8;
+                leftFrontMotorPower = s;
                 leftBackMotorPower = 0;
-                rightBackMotorPower = 0.8;
+                rightBackMotorPower = s;
                 rightFrontMotorPower = 0;
             } else if (opMode.gamepad1.dpad_down) {
                 leftFrontMotorPower = 0;
-                leftBackMotorPower = -0.8;
+                leftBackMotorPower = -s;
                 rightBackMotorPower = 0;
-                rightFrontMotorPower = -0.8;
+                rightFrontMotorPower = -s;
             } else {
-                leftFrontMotorPower = 0.8;
-                leftBackMotorPower = -0.8;
-                rightBackMotorPower = 0.8;
-                rightFrontMotorPower = -0.8;
+                leftFrontMotorPower = s;
+                leftBackMotorPower = -s;
+                rightBackMotorPower = s;
+                rightFrontMotorPower = -s;
+            }
+        }
+        if (!opMode.gamepad1.dpad_left && !opMode.gamepad1.dpad_right) {
+            if (opMode.gamepad1.dpad_up) {
+                leftFrontMotorPower = s;
+                leftBackMotorPower = s;
+                rightBackMotorPower = s;
+                rightFrontMotorPower = s;
+            }
+            if (opMode.gamepad1.dpad_down) {
+                leftFrontMotorPower = -s;
+                leftBackMotorPower = -s;
+                rightBackMotorPower = -s;
+                rightFrontMotorPower = -s;
             }
         }
 
@@ -77,10 +93,10 @@ public class buttonMap {
             rightFrontMotorPower = -opMode.gamepad1.left_trigger;
         }
         if (opMode.gamepad1.a) {
-            leftFrontMotorPower *= 0.8;
-            leftBackMotorPower *= 0.8;
-            rightBackMotorPower *= 0.8;
-            rightFrontMotorPower *= 0.8;
+            leftFrontMotorPower *= 0.6;
+            leftBackMotorPower *= 0.6;
+            rightBackMotorPower *= 0.6;
+            rightFrontMotorPower *= 0.6;
         }
         if (opMode.gamepad1.b) {
 
